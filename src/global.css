@@ -59,20 +59,91 @@ background-color: black;
   transition: all .2s;
 }
 .mainPageBgWrapper{
-  position: fixed;
+  position: relative;
   width: 100%;
   height: 70vh;
-  background-color: aliceblue;
+  background: rgb(15,15,15);
+  background: linear-gradient(180deg, rgba(15,15,15,1) 50%, rgba(0,0,0,1) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mpBG{
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  /* background-image: url(https://rare-gallery.com/uploads/posts/4599516-abstract-pattern-textured-digital-art.jpg);
+  background-size: cover; */
+}
+.siteTitle{
+  font-size: 4rem;
+}
+.siteP{
+  font-size: 1.5rem;
+  padding: 10px 20%;
+}
+.mianPageBg{
+  width: 80%;
+  height: 50%;
+  text-align: center;
 }
 .mpBottomSectionWrap{
   height: 100%;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   z-index: 7;
   position: relative;
 }
-.mpBottomEl{
+.mpBottomElWrap{
   height: 100vh;
   width: 100%;
+  display: grid;
+  align-items: center;
+}
+.mpBottomEl{
+  margin: 0px 10%;
+  height: 70%;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.mpBottomElInfo{
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.infoTitle{
+  font-size: 3.5rem;
+  border-left: 2.5px solid aliceblue;
+  border-top: 2.5px solid aliceblue;
+}
+.infoDesc{
+  font-size: 1.2rem;
+}
+.mpBottomAside{
+  width: 65%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.adnotation{
+  font-size: 1.1rem;
+  text-align: right;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  border-right: 2.5px solid aliceblue;
+  border-bottom: 2.5px solid aliceblue;
+}
+.mpBottomSlider{
+  height: 80%;
+  width: 100%;
+  background-color: aliceblue;
 }
 .mpTopSectionWrap{
   position: relative;
@@ -81,35 +152,45 @@ background-color: black;
   z-index: 5;
 }
 .mainPageInfoWrapper{
-  position: fixed;
   height: 30vh;
   width: 100%;
-  bottom: 0px;
-  background-color: antiquewhite;
-  padding: 0px 10%;
+  background-color: rgb(0, 0, 0);
+  box-shadow: 2px -6px 10px rgb(0, 0, 0)
 }
 .mpInfoEl{
   transform:translate3d(0,-100px,0);
   width: 30%;
   height: 100%;
-  background-color: aqua;
+  background-color: rgb(29, 29, 29);
 }
 .pageIndicatorWrap{
   width: 50px;
   height: auto;
   position: fixed;
-  right: 40px;
+  right: 60px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 60;
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.pageIndicatorWrap>div:nth-child(1),
+.pageIndicatorWrap>div:nth-child(2){
+  margin: 0px;
 }
 .pageIndicatorEl{
-  height: 15px;
-  width: 15px;
-  border-radius: 50%;
+  margin: 8px 0px;
+  overflow: hidden;
+}
+.indic{
+display: block;
+height: 16px;
+width: 16px;
+border-radius: 50%;
   background-color: aliceblue;
   transition: all .2s;
-  margin: 15px 0px;
+  border: 2px solid black;
 }
 .mainPageInfo{
   width: 75%;
@@ -117,10 +198,44 @@ background-color: black;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin: auto;
 }
-.active{
-  background-color: blue;
-  transition: all .2s;
+.active>.indic{
+  background-color: rgb(65, 65, 65);
+  transition: all .1s;
+}
+.active>img{
+  filter: invert(60%);
+}
+.pageIndicatorEl>img{
+  width: 22px;
+  height: 22px;
+}
+.userInfoWrapper{
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(180deg, rgb(87, 87, 86) 0%, rgb(15,15,15) 100%);
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+}
+.userInfo{
+  width: 80%;
+  height: 80%;
+}
+.userInfoarticle{
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.usrTitle{
+  font-size: 3rem;
+}
+.usrDesc{
+  font-size: 1.2rem;
 }
 ::-webkit-scrollbar {
   background: rgb(0, 0, 0);
@@ -136,4 +251,51 @@ background-color: black;
   background: transparent;
   /* margin-top: 15px;
   margin-bottom: 15px; */
+}
+
+
+
+.element {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.element-image {
+  width: 100%;
+}
+
+.element-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.element:hover .element-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.element-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.animated-background {
+  position: fixed;
+  width: 100%;
+  height: 180vh;
+  overflow: hidden;
 }
